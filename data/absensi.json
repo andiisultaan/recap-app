@@ -1,0 +1,9 @@
+[
+  { "id": 1, "nama": "Adi Pratama", "kelas": "VII-A", "tanggal": "2025-10-29", "status": "Hadir" },
+  { "id": 2, "nama": "Budi Santoso", "kelas": "VII-A", "tanggal": "2025-10-29", "status": "Izin" },
+  { "id": 3, "nama": "Citra Lestari", "kelas": "VII-B", "tanggal": "2025-10-29", "status": "Hadir" },
+  { "id": 4, "nama": "Dewi Puspita", "kelas": "VIII-A", "tanggal": "2025-10-29", "status": "Alpha" },
+  { "id": 5, "nama": "Eko Saputra", "kelas": "VIII-B", "tanggal": "2025-10-29", "status": "Hadir" }
+]
+
+

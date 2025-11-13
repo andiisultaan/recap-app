@@ -1,0 +1,106 @@
+{
+  "siswa": {
+    "id": "001",
+    "nama": "Ahmad Rizki Pratama",
+    "nis": "2024001",
+    "kelas": "XII IPA 1"
+  },
+  "transaksi": [
+    {
+      "id": 1,
+      "tanggal": "2024-01-10",
+      "bulan": "Januari",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP Januari"
+    },
+    {
+      "id": 2,
+      "tanggal": "2024-02-08",
+      "bulan": "Februari",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP Februari"
+    },
+    {
+      "id": 3,
+      "tanggal": "2024-03-05",
+      "bulan": "Maret",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP Maret"
+    },
+    {
+      "id": 4,
+      "tanggal": "2024-04-12",
+      "bulan": "April",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP April"
+    },
+    {
+      "id": 5,
+      "tanggal": "2024-05-15",
+      "bulan": "Mei",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP Mei"
+    },
+    {
+      "id": 6,
+      "tanggal": "2024-06-10",
+      "bulan": "Juni",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP Juni"
+    },
+    {
+      "id": 7,
+      "tanggal": "2024-07-08",
+      "bulan": "Juli",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP Juli"
+    },
+    {
+      "id": 8,
+      "tanggal": "2024-08-12",
+      "bulan": "Agustus",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP Agustus"
+    },
+    {
+      "id": 9,
+      "tanggal": "2024-09-10",
+      "bulan": "September",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP September"
+    },
+    {
+      "id": 10,
+      "tanggal": "2024-10-15",
+      "bulan": "Oktober",
+      "status": "Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP Oktober"
+    },
+    {
+      "id": 11,
+      "tanggal": null,
+      "bulan": "November",
+      "status": "Belum Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP November"
+    },
+    {
+      "id": 12,
+      "tanggal": null,
+      "bulan": "Desember",
+      "status": "Belum Lunas",
+      "jumlah": 500000,
+      "keterangan": "Pembayaran SPP Desember"
+    }
+  ]
+}
