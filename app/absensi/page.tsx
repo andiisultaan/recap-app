@@ -98,7 +98,7 @@ export default function Page() {
           }
         `;
 
-        const response = await fetch("http://localhost:4000/graphql", {
+        const response = await fetch("http://202.10.36.181:4000/graphql", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
