@@ -1,5 +1,9 @@
 {
+  "/api/graphql/route": "app/api/graphql/route.js",
+  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/settings/page": "app/settings/page.js",
-  "/login/page": "app/login/page.js"
+  "/absensi/page": "app/absensi/page.js",
+  "/keuangan/page": "app/keuangan/page.js",
+  "/nilai/page": "app/nilai/page.js",
+  "/settings/page": "app/settings/page.js"
 }

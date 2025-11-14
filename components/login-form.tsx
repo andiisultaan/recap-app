@@ -45,7 +45,7 @@ export default function LoginForm() {
     `;
 
     try {
-      const response = await fetch("http://backend.smkmutu-pku.web.id:4000/graphql", {
+      const response = await fetch("/api/graphql", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
