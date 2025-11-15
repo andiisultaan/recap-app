@@ -22,6 +22,7 @@ export default function NilaiPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSemester, setSelectedSemester] = useState<string>("");
   const [selectedPelajaran, setSelectedPelajaran] = useState<string>("");
+  const [selectedTahunajaran, setSelectedTahunajaran] = useState<string>("");
 
   const { user } = useAuth();
   const nis = user?.nis || "";
@@ -34,22 +35,30 @@ export default function NilaiPage() {
       try {
         const query = `
           query($nis: String!) {
-            nauByNis(nis: $nis) {
-              replid
-              nis
-              nilaiAU
-              grade
-              komentar
-              pelajaran {
-                nama
-                kode
-              }
-              semester {
-                semester
-                replid
-              }
+          nauByNis(nis: $nis) {
+            replid
+            nis
+            nilaiAU
+            grade
+            komentar
+            pelajaran {
+              nama
+              kode
+            }
+            semester {
+              semester
+            }
+            kelas {
+              kelas
+            }
+            tahunajaran {
+              tahunajaran
+              tglmulai
+              tglakhir
+              departemen
             }
           }
+        }
         `;
 
         const response = await fetch("/api/graphql", {
@@ -99,6 +108,13 @@ export default function NilaiPage() {
     return pelajaran;
   }, [data]);
 
+  const uniqueTahunajaran = useMemo(() => {
+    const tahunajaran = [...new Set(data.map(r => r.tahunajaran.tahunajaran))].sort((a, b) => {
+      return b.localeCompare(a);
+    });
+    return tahunajaran;
+  }, [data]);
+
   const stats = useMemo(() => {
     const nilaiArray = data.map(r => r.nilaiAU);
     const rataRata = nilaiArray.length > 0 ? nilaiArray.reduce((a, b) => a + b) / nilaiArray.length : 0;
@@ -124,13 +140,17 @@ export default function NilaiPage() {
       result = result.filter(r => r.pelajaran.nama === selectedPelajaran);
     }
 
+    if (selectedTahunajaran) {
+      result = result.filter(r => r.tahunajaran.tahunajaran === selectedTahunajaran);
+    }
+
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       result = result.filter(r => r.pelajaran.nama.toLowerCase().includes(query) || r.pelajaran.kode.toLowerCase().includes(query) || r.grade.toLowerCase().includes(query));
     }
 
     return result;
-  }, [data, searchQuery, selectedSemester, selectedPelajaran]);
+  }, [data, searchQuery, selectedSemester, selectedPelajaran, selectedTahunajaran]);
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -152,7 +172,26 @@ export default function NilaiPage() {
           )}
 
           <div className="space-y-3 border-b pb-4">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-4">
+              <div>
+                <label className="text-sm font-medium block mb-1">Filter Tahun Ajaran</label>
+                <select
+                  value={selectedTahunajaran}
+                  onChange={e => {
+                    setSelectedTahunajaran(e.target.value);
+                    setCurrentPage(1);
+                  }}
+                  className="w-full h-10 rounded-md bg-input text-foreground shadow-sm border border-input px-3 py-2"
+                >
+                  <option value="">Semua Tahun Ajaran</option>
+                  {uniqueTahunajaran.map(tahunajaran => (
+                    <option key={tahunajaran} value={tahunajaran}>
+                      {tahunajaran}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div>
                 <label className="text-sm font-medium block mb-1">Filter Semester</label>
                 <select
@@ -192,7 +231,7 @@ export default function NilaiPage() {
               </div>
 
               <div>
-                <label className="text-sm font-medium block mb-1">Cari Pelajaran / Kode / Grade</label>
+                <label className="text-sm font-medium block mb-1">Cari Pelajaran / Kode</label>
                 <Input
                   placeholder="Ketik untuk mencari..."
                   value={searchQuery}
@@ -205,7 +244,7 @@ export default function NilaiPage() {
               </div>
             </div>
 
-            {(selectedSemester || selectedPelajaran || searchQuery) && (
+            {(selectedSemester || selectedPelajaran || searchQuery || selectedTahunajaran) && (
               <Button
                 variant="outline"
                 size="sm"
@@ -213,6 +252,7 @@ export default function NilaiPage() {
                   setSelectedSemester("");
                   setSelectedPelajaran("");
                   setSearchQuery("");
+                  setSelectedTahunajaran("");
                   setCurrentPage(1);
                 }}
                 className="text-xs"
@@ -264,6 +304,7 @@ export default function NilaiPage() {
                           <TH className="text-sm sm:text-base">Kode</TH>
                           <TH className="text-sm sm:text-base">Nilai</TH>
                           <TH className="text-sm sm:text-base">Grade</TH>
+                          <TH className="text-sm sm:text-base">Tahun Ajaran</TH>
                           <TH className="text-sm sm:text-base">Semester</TH>
                           <TH className="text-sm sm:text-base">Komentar</TH>
                         </TR>
@@ -277,6 +318,7 @@ export default function NilaiPage() {
                             <TD className="text-sm sm:text-base">
                               <Badge variant={getGradeColor(r.grade)}>{r.grade}</Badge>
                             </TD>
+                            <TD className="text-sm sm:text-base">{r.tahunajaran.tahunajaran}</TD>
                             <TD className="text-sm sm:text-base text-center">Semester {r.semester.semester}</TD>
                             <TD className="text-sm sm:text-base max-w-[150px] truncate overflow-hidden whitespace-nowrap" title={r.komentar || undefined}>
                               {r.komentar || "-"}
@@ -306,6 +348,10 @@ export default function NilaiPage() {
                             <div className="text-xs font-semibold text-muted-foreground uppercase">Kode</div>
                             <div>{r.pelajaran.kode}</div>
                           </div>
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-muted-foreground uppercase">Tahun Ajaran</div>
+                          <div className="text-sm">{r.tahunajaran.tahunajaran}</div>
                         </div>
                         <div>
                           <div className="text-xs font-semibold text-muted-foreground uppercase">Semester</div>

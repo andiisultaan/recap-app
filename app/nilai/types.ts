@@ -1,30 +1,28 @@
-// Define the NilaiData type and getGradeColor function here
-
-export type NilaiData = {
+export interface NilaiData {
   replid: string;
-
   nis: string;
-
   nilaiAU: number;
-
   grade: string;
-
-  komentar: string;
-
+  komentar: string | null;
   pelajaran: {
     nama: string;
-
     kode: string;
   };
-
   semester: {
-    semester: number;
-
-    replid: string;
+    semester: string | number;
   };
-};
+  kelas: {
+    kelas: string;
+  };
+  tahunajaran: {
+    tahunajaran: string;
+    tglmulai: string;
+    tglakhir: string;
+    departemen: string;
+  };
+}
 
-export const getGradeColor = (grade: string): "destructive" | "secondary" | "default" | "outline" => {
+export function getGradeColor(grade: string): "default" | "secondary" | "outline" | "destructive" {
   switch (grade?.toUpperCase()) {
     case "A":
       return "default";
@@ -35,6 +33,6 @@ export const getGradeColor = (grade: string): "destructive" | "secondary" | "def
     case "D":
       return "destructive";
     default:
-      return "outline";
+      return "default";
   }
-};
+}
