@@ -109,7 +109,7 @@ export default function NilaiPage() {
   }, [data]);
 
   const uniqueTahunajaran = useMemo(() => {
-    const tahunajaran = [...new Set(data.map(r => r.tahunajaran.tahunajaran))].sort((a, b) => {
+    const tahunajaran = [...new Set(data.filter(r => r.tahunajaran).map(r => r.tahunajaran.tahunajaran))].sort((a, b) => {
       return b.localeCompare(a);
     });
     return tahunajaran;
@@ -133,20 +133,20 @@ export default function NilaiPage() {
     let result = data;
 
     if (selectedSemester) {
-      result = result.filter(r => String(r.semester.semester) === selectedSemester);
+      result = result.filter(r => String(r.semester?.semester) === selectedSemester);
     }
 
     if (selectedPelajaran) {
-      result = result.filter(r => r.pelajaran.nama === selectedPelajaran);
+      result = result.filter(r => r.pelajaran?.nama === selectedPelajaran);
     }
 
     if (selectedTahunajaran) {
-      result = result.filter(r => r.tahunajaran.tahunajaran === selectedTahunajaran);
+      result = result.filter(r => r.tahunajaran?.tahunajaran === selectedTahunajaran);
     }
 
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      result = result.filter(r => r.pelajaran.nama.toLowerCase().includes(query) || r.pelajaran.kode.toLowerCase().includes(query) || r.grade.toLowerCase().includes(query));
+      result = result.filter(r => r.pelajaran?.nama.toLowerCase().includes(query) || r.pelajaran?.kode.toLowerCase().includes(query) || r.grade.toLowerCase().includes(query));
     }
 
     return result;
@@ -312,14 +312,14 @@ export default function NilaiPage() {
                       <TBody>
                         {paginatedData.map(r => (
                           <TR key={r.replid}>
-                            <TD className="font-medium text-sm sm:text-base">{r.pelajaran.nama}</TD>
-                            <TD className="text-sm sm:text-base">{r.pelajaran.kode}</TD>
+                            <TD className="font-medium text-sm sm:text-base">{r.pelajaran?.nama}</TD>
+                            <TD className="text-sm sm:text-base">{r.pelajaran?.kode}</TD>
                             <TD className="text-sm sm:text-base font-semibold">{r.nilaiAU}</TD>
                             <TD className="text-sm sm:text-base">
                               <Badge variant={getGradeColor(r.grade)}>{r.grade}</Badge>
                             </TD>
-                            <TD className="text-sm sm:text-base">{r.tahunajaran.tahunajaran}</TD>
-                            <TD className="text-sm sm:text-base text-center">Semester {r.semester.semester}</TD>
+                            <TD className="text-sm sm:text-base">{r.tahunajaran?.tahunajaran}</TD>
+                            <TD className="text-sm sm:text-base text-center">Semester {r.semester?.semester}</TD>
                             <TD className="text-sm sm:text-base max-w-[150px] truncate overflow-hidden whitespace-nowrap" title={r.komentar || undefined}>
                               {r.komentar || "-"}
                             </TD>
@@ -335,7 +335,7 @@ export default function NilaiPage() {
                         <div className="flex justify-between items-start gap-2">
                           <div className="space-y-1 flex-1">
                             <div className="text-xs font-semibold text-muted-foreground uppercase">Pelajaran</div>
-                            <div className="font-medium text-sm">{r.pelajaran.nama}</div>
+                            <div className="font-medium text-sm">{r.pelajaran?.nama}</div>
                           </div>
                           <Badge variant={getGradeColor(r.grade)}>{r.grade}</Badge>
                         </div>
@@ -346,16 +346,16 @@ export default function NilaiPage() {
                           </div>
                           <div>
                             <div className="text-xs font-semibold text-muted-foreground uppercase">Kode</div>
-                            <div>{r.pelajaran.kode}</div>
+                            <div>{r.pelajaran?.kode}</div>
                           </div>
                         </div>
                         <div>
                           <div className="text-xs font-semibold text-muted-foreground uppercase">Tahun Ajaran</div>
-                          <div className="text-sm">{r.tahunajaran.tahunajaran}</div>
+                          <div className="text-sm">{r.tahunajaran?.tahunajaran}</div>
                         </div>
                         <div>
                           <div className="text-xs font-semibold text-muted-foreground uppercase">Semester</div>
-                          <div className="text-sm">Semester {r.semester.semester}</div>
+                          <div className="text-sm">Semester {r.semester?.semester}</div>
                         </div>
                         {r.komentar && (
                           <div>
@@ -377,7 +377,7 @@ export default function NilaiPage() {
                       </Button>
                       <div className="flex items-center gap-1 flex-wrap justify-center">
                         {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                          <Button key={page} variant={currentPage === page ? "default" : "outline"} size="sm" onClick={() => setCurrentPage(page)} className="w-8 h-8 p-0 text-xs">
+                          <Button key={page} variant={currentPage === page ? "default" : "outline"} size="sm" onClick={() => setCurrentPage(page)} className="w-8 h-8 p-0 text-xs sm:text-sm">
                             {page}
                           </Button>
                         ))}
