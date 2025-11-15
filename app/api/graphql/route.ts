@@ -2,10 +2,11 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
+  const GRAPQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT;
   try {
     const body = await request.json();
 
-    const response = await fetch("http://backend.smkmutu-pku.web.id:4000/graphql", {
+    const response = await fetch(`${GRAPQL_ENDPOINT}/graphql`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

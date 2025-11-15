@@ -26,31 +26,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/absensi/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/absensi/loading.js"
-    ],
-    "/absensi/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/absensi/page.js"
-    ],
-    "/keuangan/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/keuangan/loading.js"
-    ],
-    "/keuangan/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/keuangan/page.js"
-    ],
-    "/nilai/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/nilai/page.js"
-    ],
     "/settings/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
