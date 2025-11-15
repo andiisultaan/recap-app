@@ -15,7 +15,8 @@ interface DatePickerProps {
 }
 
 export function DatePicker({ value, onChange, placeholder = "Pick a date", className }: DatePickerProps) {
-  const date = value ? new Date(value) : undefined;
+  // Parse date string tanpa timezone conversion
+  const date = value ? new Date(value + "T00:00:00") : undefined;
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -35,7 +36,11 @@ export function DatePicker({ value, onChange, placeholder = "Pick a date", class
           captionLayout="dropdown"
           onSelect={newDate => {
             if (newDate) {
-              onChange(newDate.toISOString().split("T")[0]);
+              // Format date sebagai YYYY-MM-DD tanpa timezone conversion
+              const year = newDate.getFullYear();
+              const month = String(newDate.getMonth() + 1).padStart(2, "0");
+              const day = String(newDate.getDate()).padStart(2, "0");
+              onChange(`${year}-${month}-${day}`);
             }
           }}
           disabled={date => date > new Date()}

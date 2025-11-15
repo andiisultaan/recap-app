@@ -26,10 +26,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/settings/page": [
+    "/nilai/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/settings/page.js"
+      "static/chunks/app/nilai/page.js"
+    ],
+    "/absensi/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/absensi/loading.js"
+    ],
+    "/absensi/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/absensi/page.js"
     ]
   }
 }

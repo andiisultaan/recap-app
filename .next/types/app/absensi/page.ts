@@ -1,8 +1,8 @@
-// File: D:\yubi\recap-app\app\settings\page.tsx
-import * as entry from '../../../../app/settings/page.js'
+// File: D:\yubi\recap-app\app\absensi\page.tsx
+import * as entry from '../../../../app/absensi/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../app/settings/page.js')
+type TEntry = typeof import('../../../../app/absensi/page.js')
 
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
   ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }

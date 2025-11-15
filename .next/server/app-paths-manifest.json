@@ -2,5 +2,5 @@
   "/api/graphql/route": "app/api/graphql/route.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/settings/page": "app/settings/page.js"
+  "/absensi/page": "app/absensi/page.js"
 }
