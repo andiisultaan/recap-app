@@ -1,7 +1,3 @@
 {
-  "/page": "app/page.js",
-  "/absensi/page": "app/absensi/page.js",
-  "/keuangan/page": "app/keuangan/page.js",
-  "/nilai/page": "app/nilai/page.js",
   "/login/page": "app/login/page.js"
 }

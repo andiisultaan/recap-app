@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
+import { ThemeToggle } from "./theme/theme-toggle";
 
 interface LoginResponse {
   data: {
@@ -114,31 +115,32 @@ export default function LoginForm() {
 
   return (
     <div className="w-full max-w-md">
+      <ThemeToggle />
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="w-16 h-16 bg-linear-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+        <div className="w-16 h-16 bg-blue-600 dark:bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
           <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2h2v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
           </svg>
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Absen & Keuangan</h1>
-        <p className="text-gray-600 text-sm">Masuk untuk melihat rekapitulasi absensi dan keuangan</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">Absen & Keuangan</h1>
+        <p className="text-muted-foreground text-sm">Masuk untuk melihat rekapitulasi absensi dan keuangan</p>
       </div>
 
       {/* Form Card */}
-      <Card className="p-6 md:p-8 shadow-lg border-0 bg-white">
+      <Card className="p-6 md:p-8 shadow-lg border-0 bg-card">
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Error Message */}
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex gap-3 items-start">
-              <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-              <p className="text-red-700 text-sm font-medium">{error}</p>
+            <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg p-3 flex gap-3 items-start">
+              <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-500 shrink-0 mt-0.5" />
+              <p className="text-red-700 dark:text-red-200 text-sm font-medium">{error}</p>
             </div>
           )}
 
           {/* NIS Input */}
           <div className="space-y-2">
-            <label htmlFor="nis" className="block text-sm font-semibold text-gray-700">
+            <label htmlFor="nis" className="block text-sm font-semibold text-foreground">
               Nomor Induk Siswa (NIS)
             </label>
             <Input
@@ -148,13 +150,13 @@ export default function LoginForm() {
               value={nis}
               onChange={e => setNis(e.target.value)}
               disabled={isLoading}
-              className="h-10 text-base border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              className="h-10 text-base border-input focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent"
             />
           </div>
 
           {/* PIN Input */}
           <div className="space-y-2">
-            <label htmlFor="pin" className="block text-sm font-semibold text-gray-700">
+            <label htmlFor="pin" className="block text-sm font-semibold text-foreground">
               PIN (Password)
             </label>
             <Input
@@ -165,16 +167,16 @@ export default function LoginForm() {
               onChange={e => setPin(e.target.value)}
               disabled={isLoading}
               maxLength={6}
-              className="h-10 text-base border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent tracking-widest bg-white"
+              className="h-10 text-base border-input focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent tracking-widest"
             />
-            <p className="text-xs text-gray-500">PIN terdiri dari 4-6 digit</p>
+            <p className="text-xs text-muted-foreground">PIN terdiri dari 4-6 digit</p>
           </div>
 
           {/* Login Button */}
           <Button
             type="submit"
             disabled={isLoading}
-            className="w-full h-11 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-200 mt-6 shadow-md hover:shadow-lg"
+            className="w-full h-11 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold rounded-lg transition-all duration-200 mt-6 shadow-md hover:shadow-lg"
           >
             {isLoading ? (
               <div className="flex items-center gap-2">
@@ -195,7 +197,7 @@ export default function LoginForm() {
         </form>
 
         {/* Footer Info */}
-        <div className="mt-6 pt-6 border-t border-gray-200 text-center text-xs text-gray-600">
+        <div className="mt-6 pt-6 border-t border-border text-center text-xs text-muted-foreground">
           <p>Keamanan data Anda adalah prioritas kami</p>
         </div>
       </Card>
