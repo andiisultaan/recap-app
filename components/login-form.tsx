@@ -187,11 +187,11 @@ export default function LoginForm() {
           </Button>
 
           {/* Forgot PIN Link */}
-          <div className="text-center pt-2">
+          {/* <div className="text-center pt-2">
             <a href="#" className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
               Lupa PIN?
             </a>
-          </div>
+          </div> */}
         </form>
 
         {/* Footer Info */}
